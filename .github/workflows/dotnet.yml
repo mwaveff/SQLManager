@@ -32,6 +32,11 @@ jobs:
     - name: Відновлення залежностей
       run: dotnet restore
 
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 6.x
+
     - name: Збірка проєкту
       run: dotnet build --no-restore
 
