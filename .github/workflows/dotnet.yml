@@ -22,8 +22,8 @@ jobs:
     - name: Встановлення .NET Framework Developer Pack
       run: |
         choco install dotnetfx -y
-        choco install dotnet-4.7.2-devpack -y || echo "dotnet-4.7.2-devpack installation failed, continue with the build."
-
+        echo "dotnet-4.7.2-devpack not available, skipping installation."
+        
     - name: Встановлення .NET
       uses: actions/setup-dotnet@v4
       with:
