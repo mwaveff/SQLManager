@@ -13,22 +13,27 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    
+    runs-on: windows-latest  # Змінюємо з ubuntu-latest на windows-latest
+
     steps:
-    - name: Checkout repository
+    - name: Checkout репозиторію
       uses: actions/checkout@v4
-    
-    - name: Install .NET
+
+    - name: Встановлення .NET Framework Developer Pack
+      run: |
+        choco install dotnetfx -y
+        choco install dotnet-4.7.2-devpack -y
+
+    - name: Встановлення .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    
-    - name: Restore dependencies
+
+    - name: Відновлення залежностей
       run: dotnet restore
-    
-    - name: Build project
+
+    - name: Збірка проєкту
       run: dotnet build --no-restore
-    
-    - name: Run tests
+
+    - name: Запуск тестів
       run: dotnet test --no-build --verbosity normal
